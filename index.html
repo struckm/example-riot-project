@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <meta charset="utf-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+       <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+       <meta name="apple-mobile-web-app-capable" content="yes">
+       <meta name="mobile-web-app=capable" content="yes">
+       <title>Riot - Contacts List - Ajax Style</title>
+    </head>
+    <body>
+        <contact-list></contact-list>
+
+        <script src="node_modules/riot/riot.js"></script>
+        <script src="build/bundle.js"></script>
+        <script>
+            riot.mount('contact-list', {callback: tagCallback});
+
+            function tagCallback(component) {
+                console.log('callback executed');
+
+                var request = new XMLHttpRequest();
+                request.open('GET', 'people.json', true);
+                request.onload = function() {
+                    if(request.status === 200) {
+                        var data = JSON.parse(request.responseText);
+                        component.trigger('data_loaded', data.people);
+                    }
+                };
+
+                setTimeout(function() {
+                    request.send();
+                }, 2000)
+            }
+        </script>
+    </body>
+</html>

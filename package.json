@@ -1,0 +1,17 @@
+{
+  "name": "example-riot-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "build": "riot -w ./component/ ./build/bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "riot": "^2.5.0"
+  }
+}
